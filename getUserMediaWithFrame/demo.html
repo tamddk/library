@@ -42,10 +42,16 @@
       // Navigator.getUserMedia
       var webcam = document.getElementById("display-webcam"),
         getUserMedia = () => {
+          navigator.getUserMedia =
+            navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia;
+
           if (navigator.getUserMedia) {
             let constraints = {
               audio: true, // for deactive change false, for active change true
-              video: { facingMode: "user" }, // for deactive change false, for active change true
+              video: { facingMode: front ? "user" : "environment" }, // for deactive change false, for active change true
             };
             navigator.mediaDevices
               .getUserMedia(constraints)
