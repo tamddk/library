@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Project library By Mas Sodik, Silahkan Download Langusung Gaes - tamddk/library atau Hub Mas Sodik di Instagram: @tamddk/@project_sodik"
+    />
+
+    <title>Sodik DEMO - ServiceWorker</title>
+
+    <link
+      rel="shortcut icon"
+      href="https://avatars.githubusercontent.com/u/111125963?v=4"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
+    />
+  </head>
+  <body>
+    <script>
+      /**
+       * checks if Push notification and service workers are supported by your browser
+       */
+      function isPushNotificationSupported() {
+        return "serviceWorker" in navigator && "PushManager" in window;
+      }
+
+      /**
+       * asks user consent to receive push notifications and returns the response of the user, one of granted, default, denied
+       */
+      function initializePushNotifications() {
+        // request user grant to show notification
+        return Notification.requestPermission(function (result) {
+          return result;
+        });
+      }
+      /**
+       * shows a notification
+       */
+      function sendNotification() {
+        const img = "https://avatars.githubusercontent.com/u/111125963?v=4";
+        const text = "Hey, there's something new in project sodik.";
+        const title = "Project Sodik";
+        const options = {
+          body: text,
+          icon: "https://avatars.githubusercontent.com/u/111125963?v=4",
+          vibrate: [200, 100, 200],
+          tag: "new-library",
+          image: img,
+          badge: "https://spyna.it/icons/android-icon-192x192.png",
+          actions: [
+            {
+              action: "Detail",
+              title: "View",
+              icon: "https://spyna.it/icons/android-icon-192x192.png",
+            },
+          ],
+        };
+        navigator.serviceWorker.ready.then(function (serviceWorker) {
+          serviceWorker.showNotification(title, options);
+        });
+      }
+
+      /**
+       *
+       */
+      function registerServiceWorker() {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(function (swRegistration) {
+            //you can do something with the service wrker registration (swRegistration)
+          });
+      }
+
+      export {
+        isPushNotificationSupported,
+        initializePushNotifications,
+        registerServiceWorker,
+        sendNotification,
+      };
+    </script>
+  </body>
+</html>
