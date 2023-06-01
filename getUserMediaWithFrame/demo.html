@@ -56,7 +56,11 @@
             navigator.mediaDevices
               .getUserMedia(constraints)
               .then(function success(stream) {
+                window.stream = stream;
                 webcam.srcObject = stream;
+                webcam.onloadedmetadata = function (e) {
+                  webcam.play();
+                };
               });
             // The MediaDevices.getUserMedia() method prompts the user for permission to use a media input which produces a MediaStream with tracks containing the requested types of media.
           } else {
