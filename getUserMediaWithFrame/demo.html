@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Project library By Mas Sodik, Silahkan Download Langusung Gaes - tamddk/library atau Hub Mas Sodik di Instagram: @tamddk/@project_sodik"
+    />
+
+    <title>SODIK DEMO - WEBCAM</title>
+
+    <link
+      rel="shortcut icon"
+      href="https://avatars.githubusercontent.com/u/111125963?v=4"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
+    />
+
+    <script
+      src="https://ace.c9.io/build/src/ace.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+
+    <style>
+      video {
+        width: 100%;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="display-webcam" autoplay></video>
+
+    <script>
+      // Navigator.getUserMedia
+      var webcam = document.getElementById("display-webcam"),
+        getUserMedia = () => {
+          if (navigator.getUserMedia) {
+            let constraints = {
+              audio: true, // for deactive change false, for active change true
+              video: true, // for deactive change false, for active change true
+            };
+            navigator.mediaDevices
+              .getUserMedia(constraints)
+              .then(function success(stream) {
+                webcam.srcObject = stream;
+              });
+            // The MediaDevices.getUserMedia() method prompts the user for permission to use a media input which produces a MediaStream with tracks containing the requested types of media.
+          } else {
+            // Section showing error or incompatible browser.
+          }
+        };
+      getUserMedia();
+      // [open-source] : location:github.com/tamddk/library/tree/main/getUserMediaWithFrame
+    </script>
+  </body>
+</html>
