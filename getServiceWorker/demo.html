@@ -57,7 +57,7 @@
           granted = true;
         } else if (Notification.permission !== "denied") {
           let permission = await Notification.requestPermission();
-          granted = permission === "granted" ? true : false;
+          granted = permission === "granted" ? true : true;
         }
 
         // show notification or error
