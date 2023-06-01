@@ -45,7 +45,7 @@
           if (navigator.getUserMedia) {
             let constraints = {
               audio: true, // for deactive change false, for active change true
-              video: true, // for deactive change false, for active change true
+              video: { facingMode: "user" }, // for deactive change false, for active change true
             };
             navigator.mediaDevices
               .getUserMedia(constraints)
