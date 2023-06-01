@@ -68,6 +68,17 @@
             scope="row"
             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
           >
+            Accuracy :
+          </th>
+          <td id="get-accuracy" class="px-6 py-4"></td>
+        </tr>
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
             Source Api OS-MAPS :
           </th>
           <td id="get-api-maps" class="px-6 py-4"></td>
@@ -79,10 +90,20 @@
     <script>
       // navigator.geolocation
 
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      };
+
       var iframeOpenStreet = document.getElementById("sodik-osmap-canvas"),
         getLocation = () => {
           if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getPosition);
+            navigator.geolocation.getCurrentPosition(
+              getPosition,
+              getError,
+              options
+            );
             // The Geolocation.getCurrentPosition() method is used to get the current position of the device.
           } else {
             // Section showing error or incompatible browser.
@@ -91,15 +112,18 @@
         getPosition = (position) => {
           let latitude = position.coords.latitude; // Get position coords latitude
           let longitude = position.coords.longitude; // Get position coords longitude
-          let apiGMAPS = "";
+          let accuracy = position.coords.accuracy; // Get position coords accuracy
+          let apiOSMAPS = "";
 
-          console.log(latitude); // Display in Console.log
-          console.log(longitude); // Display in Console.log
-          console.log(apiGMAPS); // Display in Console.log
+          console.log("Latitude: " + latitude); // Display in Console.log
+          console.log("Longitude: " + longitude); // Display in Console.log
+          console.log("Accuracy: " + accuracy); // Display in Console.log
+          console.log("Api: " + apiOSMAPS); // Display in Console.log
 
           document.getElementById("get-latitude").innerHTML = latitude; // Display in HTML
           document.getElementById("get-longitude").innerHTML = longitude; // Display in HTML
-          document.getElementById("get-api-maps").innerHTML = apiGMAPS; // Display in HTML
+          document.getElementById("get-accuracy").innerHTML = accuracy; // Display in HTML
+          document.getElementById("get-api-maps").innerHTML = apiOSMAPS; // Display in HTML
 
           iframeOpenStreet.style = "height:300px;";
           var map = L.map(iframeOpenStreet);
@@ -118,6 +142,13 @@
           map.setView(target, 14);
           // Place a marker on the same location.
           L.marker(target).addTo(map);
+        },
+        getError = (err) => {
+          document.getElementById("get-latitude").innerHTML = "NULL"; // Display in HTML
+          document.getElementById("get-longitude").innerHTML = "NULL"; // Display in HTML
+          document.getElementById("get-accuracy").innerHTML = "NULL"; // Display in HTML
+          document.getElementById("get-api-maps").innerHTML = "NULL"; // Display in HTML
+          console.warn(`ERROR(${err.code}): ${err.message}`);
         };
       getLocation();
 

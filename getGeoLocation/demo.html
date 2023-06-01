@@ -55,6 +55,17 @@
           </th>
           <td id="get-longitude" class="px-6 py-4"></td>
         </tr>
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Accuracy :
+          </th>
+          <td id="get-accuracy" class="px-6 py-4"></td>
+        </tr>
       </tbody>
     </table>
     <script>
@@ -77,21 +88,26 @@
           } else {
             document.getElementById("get-latitude").innerHTML = "NULL"; // Display in HTML
             document.getElementById("get-longitude").innerHTML = "NULL"; // Display in HTML
+            document.getElementById("get-accuracy").innerHTML = "NULL"; // Display in HTML
           }
         },
         getPosition = (position) => {
           let latitude = position.coords.latitude; // Get position coords latitude
           let longitude = position.coords.longitude; // Get position coords longitude
+          let accuracy = position.coords.accuracy; // Get position coords accuracy
 
           console.log("Latitude: " + latitude); // Display in Console.log
           console.log("Longitude: " + longitude); // Display in Console.log
+          console.log("Accuracy: " + accuracy); // Display in Console.log
 
           document.getElementById("get-latitude").innerHTML = latitude; // Display in HTML
           document.getElementById("get-longitude").innerHTML = longitude; // Display in HTML
+          document.getElementById("get-accuracy").innerHTML = accuracy; // Display in HTML
         },
         getError = (err) => {
           document.getElementById("get-latitude").innerHTML = "NULL"; // Display in HTML
           document.getElementById("get-longitude").innerHTML = "NULL"; // Display in HTML
+          document.getElementById("get-accuracy").innerHTML = "NULL"; // Display in HTML
           console.warn(`ERROR(${err.code}): ${err.message}`);
         };
       getLocation();
