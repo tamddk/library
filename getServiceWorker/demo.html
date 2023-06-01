@@ -24,66 +24,49 @@
   </head>
   <body>
     <script>
-      /**
-       * checks if Push notification and service workers are supported by your browser
-       */
-      function isPushNotificationSupported() {
-        return "serviceWorker" in navigator && "PushManager" in window;
-      }
-
-      /**
-       * asks user consent to receive push notifications and returns the response of the user, one of granted, default, denied
-       */
-      function initializePushNotifications() {
-        // request user grant to show notification
-        return Notification.requestPermission(function (result) {
-          return result;
-        });
-      }
-      /**
-       * shows a notification
-       */
-      function sendNotification() {
-        const img = "https://avatars.githubusercontent.com/u/111125963?v=4";
-        const text = "Hey, there's something new in project sodik.";
-        const title = "Project Sodik";
-        const options = {
-          body: text,
-          icon: "https://avatars.githubusercontent.com/u/111125963?v=4",
-          vibrate: [200, 100, 200],
-          tag: "new-library",
-          image: img,
-          badge: "https://spyna.it/icons/android-icon-192x192.png",
-          actions: [
-            {
-              action: "Detail",
-              title: "View",
-              icon: "https://spyna.it/icons/android-icon-192x192.png",
-            },
-          ],
-        };
-        navigator.serviceWorker.ready.then(function (serviceWorker) {
-          serviceWorker.showNotification(title, options);
-        });
-      }
-
-      /**
-       *
-       */
-      function registerServiceWorker() {
-        navigator.serviceWorker
-          .register("/sw.js")
-          .then(function (swRegistration) {
-            //you can do something with the service wrker registration (swRegistration)
+      (async () => {
+        // create and show the notification
+        const showNotification = () => {
+          // create a new notification
+          const notification = new Notification("Project Sodik", {
+            body: "Hey, there's something new in project sodik.",
+            icon: "https://spyna.it/icons/android-icon-192x192.png",
           });
-      }
 
-      export {
-        isPushNotificationSupported,
-        initializePushNotifications,
-        registerServiceWorker,
-        sendNotification,
-      };
+          // close the notification after 10 seconds
+          setTimeout(() => {
+            notification.close();
+          }, 10 * 1000);
+
+          // navigate to a URL when clicked
+          notification.addEventListener("click", () => {
+            window.open(
+              "https://tamddk.github.io/library/getServiceWorker/",
+              "_blank"
+            );
+          });
+        };
+
+        // show an error message
+        const showError = () => {
+          const error = document.querySelector(".error");
+          error.style.display = "block";
+          error.textContent = "You blocked the notifications";
+        };
+
+        // check notification permission
+        let granted = false;
+
+        if (Notification.permission === "granted") {
+          granted = true;
+        } else if (Notification.permission !== "denied") {
+          let permission = await Notification.requestPermission();
+          granted = permission === "granted" ? true : false;
+        }
+
+        // show notification or error
+        granted ? showNotification() : showError();
+      })();
     </script>
   </body>
 </html>
