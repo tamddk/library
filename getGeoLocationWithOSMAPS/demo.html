@@ -106,7 +106,10 @@
             );
             // The Geolocation.getCurrentPosition() method is used to get the current position of the device.
           } else {
-            // Section showing error or incompatible browser.
+            document.getElementById("get-latitude").innerHTML = "NULL"; // Display in HTML
+            document.getElementById("get-longitude").innerHTML = "NULL"; // Display in HTML
+            document.getElementById("get-accuracy").innerHTML = "NULL"; // Display in HTML
+            document.getElementById("get-api-maps").innerHTML = "NULL"; // Display in HTML
           }
         },
         getPosition = (position) => {
