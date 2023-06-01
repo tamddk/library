@@ -14702,7 +14702,7 @@
 });
 //# sourceMappingURL=flowbite.min.js.map
 $(document).ready(function () {
-  var url_donasi = window.location.origin + "/library";
+  var url_donasi = "https://tamddk.github.io/library";
   _sdk_elementDonasi = () => {
     return (
       `
