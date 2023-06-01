@@ -73,11 +73,19 @@
           let latitude = position.coords.latitude; // Get position coords latitude
           let longitude = position.coords.longitude; // Get position coords longitude
 
-          console.log(latitude); // Display in Console.log
-          console.log(longitude); // Display in Console.log
+          if (position != "granted") {
+            console.log("NULL"); // Display in Console.log
+            console.log("NULL"); // Display in Console.log
 
-          document.getElementById("get-latitude").innerHTML = latitude; // Display in HTML
-          document.getElementById("get-longitude").innerHTML = longitude; // Display in HTML
+            document.getElementById("get-latitude").innerHTML = "NULL"; // Display in HTML
+            document.getElementById("get-longitude").innerHTML = "NULL"; // Display in HTML
+          } else {
+            console.log(latitude); // Display in Console.log
+            console.log(longitude); // Display in Console.log
+
+            document.getElementById("get-latitude").innerHTML = latitude; // Display in HTML
+            document.getElementById("get-longitude").innerHTML = longitude; // Display in HTML
+          }
         };
       getLocation();
 
