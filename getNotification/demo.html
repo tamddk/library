@@ -23,12 +23,52 @@
     />
   </head>
   <body>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Title</th>
+          <th scope="col" class="px-6 py-3">Access</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Notification :
+          </th>
+          <td id="notif-sodik" class="px-6 py-4"></td>
+        </tr>
+      </tbody>
+    </table>
     <script>
       // Notification.requestPermission()
 
-      if ("Notification" in window) {
-        Notification.requestPermission();
-      }
+      _sdk_run = () => {
+        if ("Notification" in window) {
+          Notification.requestPermission(_sdk_permission);
+          // The Notification interface of the Notifications API is used to configure and display desktop notifications to the user.
+        }
+      };
+
+      _sdk_permission = (permission) => {
+        if (permission != "granted") {
+          // If Acces denied
+          document.getElementById("notif-sodik").innerHTML = "Denied"; // Display in HTML
+          return;
+        } else {
+          // Access accepted
+          document.getElementById("notif-sodik").innerHTML = "Active"; // Display in HTML
+          return;
+        }
+      };
+
+      _sdk_run();
 
       // [open-source] : location:github.com/tamddk/library/tree/main/getNotification
     </script>
