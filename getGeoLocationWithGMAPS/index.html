@@ -474,11 +474,9 @@
 
     <script>
       var startScript = "<script>",
-        endScript = "<" + "/script>",
-        scriptOSM =
-          '<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js">';
+        endScript = "<" + "/script>";
       var dataText = [
-        '<!-- Goole Map Api -->\n\n<iframe id="sodik-gmap-canvas" width="100%" height="300px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>\n\n' +
+        '<!-- Google Map Api -->\n\n<iframe id="sodik-gmap-canvas" width="100%" height="300px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>\n\n' +
           startScript +
           '\n\n// navigator.geolocation\n\nvar iframeGoogle = document.getElementById("sodik-gmap-canvas"),\ngetLocation = () => { \n if (navigator.geolocation){ \n\n\ navigator.geolocation.getCurrentPosition(getPosition);\n// The Geolocation.getCurrentPosition() method is used to get the current position of the device. \n\n } else { \n // Section showing error or incompatible browser. \n } \n},\ngetPosition = (position) => { \n\n\ iframeGoogle.setAttribute("src","https://maps.google.com/maps?width=100%25&height=250&hl=en&q=" + position.coords.latitude + "," + position.coords.longitude + "+(Instagram%20@project_sodik)&t=&z=14&ie=UTF8&iwloc=B&output=embed"); \n\n\}; \ngetLocation(); \n\n\// [open-source] : location:github.com/tamddk/library/tree/main/getGeoLocationWithGMAPS\n\n' +
           endScript,

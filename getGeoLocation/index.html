@@ -507,9 +507,7 @@
 
     <script>
       var startScript = "<script>",
-        endScript = "<" + "/script>",
-        scriptOSM =
-          '<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js">';
+        endScript = "<" + "/script>";
       var dataText = [
         '// navigator.geolocation\n\nvar getLocation = () => { \n if (navigator.geolocation){ \n\n\ navigator.geolocation.getCurrentPosition(getPosition);\n// The Geolocation.getCurrentPosition() method is used to get the current position of the device. \n\n } else { \n // Section showing error or incompatible browser. \n } \n},\ngetPosition = (position) => { \n\n\ let latitude = "Latitude: " + position.coords.latitude; // Get position coords latitude\n\ let longitude = "Longitude: " + position.coords.longitude; // Get position coords longitude\n\n\ console.log(latitude);  // Display in Console.log\n console.log(longitude);  // Display in Console.log\n\n\}; \ngetLocation(); \n\n\// [open-source] : location:github.com/tamddk/library/tree/main/getGeoLocation',
       ];
