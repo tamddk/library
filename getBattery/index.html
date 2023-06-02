@@ -488,7 +488,7 @@
           startScript +
           '// navigator.getBattery\n\n var batteryIsCharging = false,\n   getLocation = () => {\n     if (navigator.getBattery) {\n       navigator.getBattery().then(function (battery) {\n         batteryIsCharging = battery.charging;\n         refreshLevel(battery.level);\n \n\n         battery.addEventListener("chargingchange", function () {\n           batteryIsCharging = battery.charging;\n           refreshLevel(battery.level);\n         });\n         battery.addEventListener("levelchange", function () {\n           refreshLevel(battery.level);\n         });\n       });\n       // The getBattery() method provides information about the system' +
           "'" +
-          's battery.\n     } else {\n       // Section showing error or incompatible browser.\n     }\n   },\n   refreshLevel = (level) => {\n     document.getElementById("get-battery").innerHTML = level * 100 + " %";\n   };\n \n\n getLocation(); \n\n // [open-source] : location:github.com/tamddk/library/tree/main/getGeoLocation \n\n' +
+          's battery.\n     } else {\n       // Section showing error or incompatible browser.\n     }\n   },\n   refreshLevel = (level) => {\n     document.getElementById("get-battery").innerHTML = level * 100 + " %";\n   };\n \n\n getLocation(); \n\n // [open-source] : location:github.com/tamddk/library/tree/main/getBattery \n\n' +
           endScript,
       ];
       var dataType = ["php"];
