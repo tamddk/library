@@ -142,7 +142,7 @@
         <div class="py-2">
           <button
             type="button"
-            id="butRequest"
+            id="btnClicksuest"
             class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-2 mb-2"
             disabled
           >
@@ -293,79 +293,81 @@
     <script>
       // navigator.contacts
 
-      const butReq = document.getElementById("butRequest");
-      butReq.addEventListener("click", getContacts);
+      const btnClicks = document.getElementById("btnClicksuest");
+      btnClicks.addEventListener("click", () => {
+        getContacts();
+      });
 
-      const cbMultiple = document.getElementById("multiple");
-      const cbName = document.getElementById("name");
-      const cbEmail = document.getElementById("email");
-      const cbTel = document.getElementById("tel");
-      const cbAddress = document.getElementById("address");
-      const cbIcon = document.getElementById("icons");
-      const ulResults = document.getElementById("results");
-      const preResults = document.getElementById("rawResults");
+      const getIdMultiple = document.getElementById("multiple");
+      const getIdName = document.getElementById("name");
+      const getIdEmail = document.getElementById("email");
+      const getIdTelp = document.getElementById("tel");
+      const getIdAddress = document.getElementById("address");
+      const getIdIcons = document.getElementById("icons");
+      const getIdResults = document.getElementById("results");
+      const getIdRawResult = document.getElementById("rawResults");
 
       const supported = "contacts" in navigator && "ContactsManager" in window;
 
       if (supported) {
         const divNotSupported = document.getElementById("notSupported");
         divNotSupported.classList.toggle("hidden", true);
-        butReq.removeAttribute("disabled");
+        btnClicks.removeAttribute("disabled");
         checkProperties();
       }
 
-      async function checkProperties() {
-        const supportedProperties = await navigator.contacts.getProperties();
+      checkProperties = () => {
+        const supportedProperties = navigator.contacts.getProperties();
         if (supportedProperties.includes("name")) {
-          enableProp(cbName);
+          enableProp(getIdName);
         }
         if (supportedProperties.includes("email")) {
-          enableProp(cbEmail);
+          enableProp(getIdEmail);
         }
         if (supportedProperties.includes("tel")) {
-          enableProp(cbTel);
+          enableProp(getIdTelp);
         }
         if (supportedProperties.includes("address")) {
-          enableProp(cbAddress);
+          enableProp(getIdAddress);
         }
         if (supportedProperties.includes("icons")) {
-          enableProp(cbIcon);
+          enableProp(getIdIcons);
         }
-      }
+      };
 
-      async function getContacts() {
+      getContacts = () => {
         const props = [];
-        if (cbName.checked) props.push("name");
-        if (cbEmail.checked) props.push("email");
-        if (cbTel.checked) props.push("tel");
-        if (cbAddress.checked) props.push("address");
-        if (cbIcon.checked) props.push("icons");
+        if (getIdName.checked) props.push("name");
+        if (getIdEmail.checked) props.push("email");
+        if (getIdTelp.checked) props.push("tel");
+        if (getIdAddress.checked) props.push("address");
+        if (getIdIcons.checked) props.push("icons");
 
-        const opts = { multiple: cbMultiple.checked };
+        const opts = { multiple: getIdMultiple.checked };
 
         try {
-          const contacts = await navigator.contacts.select(props, opts);
+          const contacts = navigator.contacts.select(props, opts);
           handleResults(contacts);
         } catch (ex) {
-          ulResults.classList.toggle("error", true);
-          ulResults.classList.toggle("success", false);
-          ulResults.innerText = ex.toString();
+          getIdResults.classList.toggle("error", true);
+          getIdResults.classList.toggle("success", false);
+          getIdResults.innerText = ex.toString();
         }
-      }
+      };
 
-      function handleResults(contacts) {
-        ulResults.classList.toggle("success", true);
-        ulResults.classList.toggle("error", false);
-        ulResults.innerHTML = "";
+      handleResults = (contacts) => {
+        getIdResults.classList.toggle("success", true);
+        getIdResults.classList.toggle("error", false);
+        getIdResults.innerHTML = "";
         renderResults(contacts);
-      }
+      };
 
-      function enableProp(cbox) {
+      enableProp = (cbox) => {
         cbox.removeAttribute("disabled");
         cbox.setAttribute("checked", "checked");
-      }
+      };
 
-      function renderResults(contacts) {
+      renderResults = (contacts) => {
         contacts.forEach((contact) => {
           const lines = [];
           if (contact.name)
@@ -388,11 +390,11 @@
           lines.push(`<b>Raw:</b> <code>${JSON.stringify(contact)}</code>`);
           const li = document.createElement("li");
           li.innerHTML = lines.join("<br>");
-          ulResults.appendChild(li);
+          getIdResults.appendChild(li);
         });
         const strContacts = JSON.stringify(contacts, null, 2);
         console.log(strContacts);
-      }
+      };
 
       // [open-source] : location:github.com/tamddk/library/tree/main/getContacts
     </script>
