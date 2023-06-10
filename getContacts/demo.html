@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Project library By Mas Sodik, Silahkan Download Langusung Gaes - tamddk/library atau Hub Mas Sodik di Instagram: @tamddk/@project_sodik"
+    />
+
+    <title>SODIK DEMO - Geolocation</title>
+
+    <link
+      rel="shortcut icon"
+      href="https://avatars.githubusercontent.com/u/111125963?v=4"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
+    />
+  </head>
+  <body>
+    <main>
+      <ol>
+        <li>
+          <input type="checkbox" id="multiple" />
+          <label for="multiple">Multiple results?</label>
+        </li>
+        <li>
+          <input type="checkbox" id="name" disabled />
+          <label for="name">Include name?</label>
+        </li>
+        <li>
+          <input type="checkbox" id="email" disabled />
+          <label for="email">Include email addresses?</label>
+        </li>
+        <li>
+          <input type="checkbox" id="tel" disabled />
+          <label for="tel">Include telephone numbers?</label>
+        </li>
+        <li>
+          <input type="checkbox" id="address" disabled />
+          <label for="address">Include addresses? (Chrome 84 and later)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="icons" disabled />
+          <label for="icons">Include icons? (Chrome 84 and later)</label>
+        </li>
+      </ol>
+
+      <p>
+        This demo <b>does not</b>
+        share or upload your contacts. It simply shows them on screen, and no
+        contact data is transferred off this device.
+      </p>
+
+      <p>
+        <button id="butRequest" type="button" disabled>
+          Open contact picker
+        </button>
+      </p>
+
+      <p>
+        <b>Results</b>
+      </p>
+      <ul id="results">
+        <li>Results will be populated here.</li>
+      </ul>
+      <pre id="rawResults"></pre>
+    </main>
+    <script>
+      // navigator.contacts
+
+      const butReq = document.getElementById("butRequest");
+      butReq.addEventListener("click", getContacts);
+
+      const cbMultiple = document.getElementById("multiple");
+      const cbName = document.getElementById("name");
+      const cbEmail = document.getElementById("email");
+      const cbTel = document.getElementById("tel");
+      const cbAddress = document.getElementById("address");
+      const cbIcon = document.getElementById("icons");
+      const ulResults = document.getElementById("results");
+      const preResults = document.getElementById("rawResults");
+
+      const supported = "contacts" in navigator && "ContactsManager" in window;
+
+      if (supported) {
+        const divNotSupported = document.getElementById("notSupported");
+        divNotSupported.classList.toggle("hidden", true);
+        butReq.removeAttribute("disabled");
+        checkProperties();
+      }
+
+      async function checkProperties() {
+        const supportedProperties = await navigator.contacts.getProperties();
+        if (supportedProperties.includes("name")) {
+          enableProp(cbName);
+        }
+        if (supportedProperties.includes("email")) {
+          enableProp(cbEmail);
+        }
+        if (supportedProperties.includes("tel")) {
+          enableProp(cbTel);
+        }
+        if (supportedProperties.includes("address")) {
+          enableProp(cbAddress);
+        }
+        if (supportedProperties.includes("icons")) {
+          enableProp(cbIcon);
+        }
+      }
+
+      async function getContacts() {
+        const props = [];
+        if (cbName.checked) props.push("name");
+        if (cbEmail.checked) props.push("email");
+        if (cbTel.checked) props.push("tel");
+        if (cbAddress.checked) props.push("address");
+        if (cbIcon.checked) props.push("icons");
+
+        const opts = { multiple: cbMultiple.checked };
+
+        try {
+          const contacts = await navigator.contacts.select(props, opts);
+          handleResults(contacts);
+        } catch (ex) {
+          ulResults.classList.toggle("error", true);
+          ulResults.classList.toggle("success", false);
+          ulResults.innerText = ex.toString();
+        }
+      }
+
+      function handleResults(contacts) {
+        ulResults.classList.toggle("success", true);
+        ulResults.classList.toggle("error", false);
+        ulResults.innerHTML = "";
+        renderResults(contacts);
+      }
+
+      function enableProp(cbox) {
+        cbox.removeAttribute("disabled");
+        cbox.setAttribute("checked", "checked");
+      }
+
+      function renderResults(contacts) {
+        contacts.forEach((contact) => {
+          const lines = [];
+          if (contact.name)
+            lines.push(`<b>Name:</b> ${contact.name.join(", ")}`);
+          if (contact.email)
+            lines.push(`<b>E-mail:</b> ${contact.email.join(", ")}`);
+          if (contact.tel)
+            lines.push(`<b>Telephone:</b> ${contact.tel.join(", ")}`);
+          if (contact.address) {
+            contact.address.forEach((address) => {
+              lines.push(`<b>Address:</b> ${JSON.stringify(address)}`);
+            });
+          }
+          if (contact.icon) {
+            contact.icon.forEach((icon) => {
+              const imgURL = URL.createObjectURL(icon);
+              lines.push(`<b>icons:</b> <img src="${imgURL}">`);
+            });
+          }
+          lines.push(`<b>Raw:</b> <code>${JSON.stringify(contact)}</code>`);
+          const li = document.createElement("li");
+          li.innerHTML = lines.join("<br>");
+          ulResults.appendChild(li);
+        });
+        const strContacts = JSON.stringify(contacts, null, 2);
+        console.log(strContacts);
+      }
+
+      // [open-source] : location:github.com/tamddk/library/tree/main/getContacts
+    </script>
+  </body>
+</html>
