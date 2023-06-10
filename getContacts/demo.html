@@ -313,7 +313,7 @@
         checkProperties();
       }
 
-      checkProperties = async () => {
+      async function checkProperties() {
         const supportedProperties = await navigator.contacts.getProperties();
         if (supportedProperties.includes("name")) {
           enableProp(getIdName);
@@ -330,9 +330,9 @@
         if (supportedProperties.includes("icons")) {
           enableProp(getIdIcons);
         }
-      };
+      }
 
-      getContacts = async () => {
+      async function getContacts() {
         const props = [];
         if (getIdName.checked) props.push("name");
         if (getIdEmail.checked) props.push("email");
@@ -350,7 +350,7 @@
           getIdResults.classList.toggle("success", false);
           getIdResults.innerText = ex.toString();
         }
-      };
+      }
 
       handleResults = (contacts) => {
         getIdResults.classList.toggle("success", true);
