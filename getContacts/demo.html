@@ -21,20 +21,6 @@
       rel="stylesheet"
       href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
     />
-
-    <script>
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      if (
-        /android/i.test(userAgent) ||
-        (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream)
-      ) {
-      } else {
-        var frameid = document.getElementById("ifNotSupportDesktopGuys");
-        if (frameid) {
-          frameid.parentNode.removeChild(frameid);
-        }
-      }
-    </script>
   </head>
   <body id="ifNotSupportDesktopGuys">
     <main class="w-full h-full">
