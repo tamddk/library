@@ -313,8 +313,8 @@
         checkProperties();
       }
 
-      checkProperties = () => {
-        const supportedProperties = navigator.contacts.getProperties();
+      checkProperties = async () => {
+        const supportedProperties = await navigator.contacts.getProperties();
         if (supportedProperties.includes("name")) {
           enableProp(getIdName);
         }
@@ -332,7 +332,7 @@
         }
       };
 
-      getContacts = () => {
+      getContacts = async () => {
         const props = [];
         if (getIdName.checked) props.push("name");
         if (getIdEmail.checked) props.push("email");
@@ -343,7 +343,7 @@
         const opts = { multiple: getIdMultiple.checked };
 
         try {
-          const contacts = navigator.contacts.select(props, opts);
+          const contacts = await navigator.contacts.select(props, opts);
           handleResults(contacts);
         } catch (ex) {
           getIdResults.classList.toggle("error", true);
