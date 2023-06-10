@@ -6898,7 +6898,8 @@ input:checked + .toggle-bg {
 SODIK DONATE CSS
 
 */
-body, *[donate="sodik"],
+body,
+*[donate="sodik"],
 ._2ixjs {
   --sodik-donate-bg-opacity: 1;
   --sodik-donate-border-opacity: 1;
@@ -7067,4 +7068,9 @@ body, *[donate="sodik"],
 }
 img {
   vertical-align: middle;
+}
+*[bg-text-editor] {
+  padding: 10px;
+  background: #ededed;
+  border-radius: 10px;
 }
