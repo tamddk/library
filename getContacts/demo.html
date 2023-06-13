@@ -57,8 +57,11 @@
       }
 
       async function checkProperties() {
-        const supportedProperties = await navigator.contacts.getProperties();
-        const contacts = await navigator.contacts.select();
+        const props = [];
+        const opts = {
+          multiple: true,
+        };
+        const contacts = await navigator.contacts.select(props, opts);
         document.getElementById("get-contacts").innerHTML = "Support";
       }
 
