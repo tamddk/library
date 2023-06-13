@@ -6985,7 +6985,10 @@ body,
 ._SkePP {
   display: flex;
   align-items: center;
-  z-index: 2;
+}
+._Paling_Top {
+  position: relative;
+  z-index: 9999;
 }
 *[donate-content-main] {
   max-width: 24rem;

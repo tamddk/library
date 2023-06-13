@@ -14715,6 +14715,7 @@ $(document).ready(function () {
           viewBox="0 0 24 24"
           width="24"
           height="24"
+          class="_Paling_Top"
           stroke="currentColor"
           stroke-width="2"
           fill="none"
@@ -14734,7 +14735,7 @@ $(document).ready(function () {
         <button
           type="button"
           donate-close="thanksyoubro"
-          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white _Paling_Top"
         >
           <svg
             aria-hidden="true"
