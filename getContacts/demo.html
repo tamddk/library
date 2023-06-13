@@ -51,11 +51,6 @@
       // navigator.getContacts
 
       if ("contacts" in navigator && "ContactsManager" in window) {
-        const props = [];
-        const opts = {
-          multiple: true,
-        };
-        const contacts = await navigator.contacts.select(props, opts);
         document.getElementById("get-contacts").innerHTML = "Support";
       } else {
         document.getElementById("get-contacts").innerHTML = "No Support";
