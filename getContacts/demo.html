@@ -50,10 +50,11 @@
     <script>
       // navigator.getContacts
       if ("contacts" in navigator && "ContactsManager" in window) {
-        document.getElementById("get-contacts").innerHTML = "Support";
+        getContacts();
       } else {
         document.getElementById("get-contacts").innerHTML = "No Support";
       }
+
       async function getContacts() {
         const props = [];
         props.push("name");
@@ -61,18 +62,47 @@
         props.push("tel");
         props.push("address");
         props.push("icon");
-        const opts = { multiple: cbMultiple.checked };
+        const opts = {
+          multiple: true,
+        };
         try {
           const contacts = await navigator.contacts.select(props, opts);
           handleResults(contacts);
         } catch (ex) {
-          alert(ex.toString());
+          document.getElementById("get-contacts").innerHTML = ex.toString();
         }
       }
+
       function handleResults(contacts) {
         const strContacts = JSON.stringify(contacts, null, 2);
-        alert(strContacts);
+        document.getElementById("get-contacts").innerHTML = strContacts;
+        renderResults(contacts);
       }
+
+      function renderResults(contacts) {
+        contacts.forEach((contact) => {
+          const lines = [];
+          if (contact.name) lines.push(contact.name.join(", "));
+          if (contact.email) lines.push(contact.email.join(", "));
+          if (contact.tel) lines.push(contact.tel.join(", "));
+          if (contact.address) {
+            contact.address.forEach((address) => {
+              lines.push(JSON.stringify(addres));
+            });
+          }
+          if (contact.icon) {
+            contact.icon.forEach((icon) => {
+              const imgURL = URL.createObjectURL(icon);
+              lines.push(imgURL);
+            });
+          }
+          lines.push(JSON.stringify(contact));
+          document.getElementById("get-contacts").innerHTML = lines.join(" ");
+        });
+        const strContacts = JSON.stringify(contacts, null, 2);
+        document.getElementById("get-contacts").innerHTML = strContacts;
+      }
+
       // [open-source] : location:github.com/tamddk/library/tree/main/getContacts
     </script>
   </body>
