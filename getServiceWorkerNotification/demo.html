@@ -49,22 +49,13 @@
     <script>
       // Notification.requestPermission()
 
-      showNotification = () => {
-        Notification.requestPermission((result) => {
-          if (result === "granted") {
-            navigator.serviceWorker.ready.then((registration) => {
-              registration.showNotification("Project Sodik", {
-                body: "Sodik: Access approved by you.",
-                icon: "https://avatars.githubusercontent.com/u/111125963?v=4",
-                vibrate: [200, 100, 200, 100, 200, 100, 200],
-                tag: "project-sodik",
-              });
-            });
-          }
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js");
+        navigator.serviceWorker.addEventListener("message", (event) => {
+          console.log(event.data);
         });
-      };
+      }
 
-      showNotification();
       // [open-source] : location:github.com/tamddk/library/tree/main/getNotification
     </script>
   </body>
