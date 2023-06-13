@@ -29,141 +29,142 @@
         class="block p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
       >
         <p id="notSupported">
-          <b>Sorry!</b> This browser doesn't support the Contact Picker API,
-          which required for this demo. Try enabling the
+          <b>Sorry!</b> This browser doesn't support the Contact API desktop
+          browser, which required for this demo. Try enabling the
           <code>#enable-experimental-web-platform-features</code> in
-          chrome://flags and try again.
+          chrome://flags or using your phone and try again.
         </p>
 
-        <ol>
-          <li class="py-2">
-            <div
-              class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
-            >
-              <input
-                id="multiple"
-                type="checkbox"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label
-                for="multiple"
-                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Multiple include results?</label
+        <div id="justPhoneDisplayBYSODIK">
+          <ol>
+            <li class="py-2">
+              <div
+                class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
               >
-            </div>
-          </li>
-          <li class="py-2">
-            <div
-              class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
-            >
-              <input
-                id="name"
-                type="checkbox"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                disabled
-              />
-              <label
-                for="name"
-                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Include name?</label
+                <input
+                  id="multiple"
+                  type="checkbox"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="multiple"
+                  class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Multiple include results?</label
+                >
+              </div>
+            </li>
+            <li class="py-2">
+              <div
+                class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
               >
-            </div>
-          </li>
-          <li class="py-2">
-            <div
-              class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
-            >
-              <input
-                id="email"
-                type="checkbox"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                disabled
-              />
-              <label
-                for="email"
-                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Include email address?</label
+                <input
+                  id="name"
+                  type="checkbox"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  disabled
+                />
+                <label
+                  for="name"
+                  class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Include name?</label
+                >
+              </div>
+            </li>
+            <li class="py-2">
+              <div
+                class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
               >
-            </div>
-          </li>
-          <li class="py-2">
-            <div
-              class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
-            >
-              <input
-                id="tel"
-                type="checkbox"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                disabled
-              />
-              <label
-                for="tel"
-                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Include telephone numbers?</label
+                <input
+                  id="email"
+                  type="checkbox"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  disabled
+                />
+                <label
+                  for="email"
+                  class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Include email address?</label
+                >
+              </div>
+            </li>
+            <li class="py-2">
+              <div
+                class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
               >
-            </div>
-          </li>
-          <li class="py-2">
-            <div
-              class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
-            >
-              <input
-                id="address"
-                type="checkbox"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                disabled
-              />
-              <label
-                for="address"
-                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Include address? (Chrome 84 and later)</label
+                <input
+                  id="tel"
+                  type="checkbox"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  disabled
+                />
+                <label
+                  for="tel"
+                  class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Include telephone numbers?</label
+                >
+              </div>
+            </li>
+            <li class="py-2">
+              <div
+                class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
               >
-            </div>
-          </li>
-          <li class="py-2">
-            <div
-              class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
-            >
-              <input
-                id="icons"
-                type="checkbox"
-                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                disabled
-              />
-              <label
-                for="icons"
-                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Include icons? (Chrome 84 and later)</label
+                <input
+                  id="address"
+                  type="checkbox"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  disabled
+                />
+                <label
+                  for="address"
+                  class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Include address? (Chrome 84 and later)</label
+                >
+              </div>
+            </li>
+            <li class="py-2">
+              <div
+                class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700"
               >
-            </div>
-          </li>
-        </ol>
+                <input
+                  id="icons"
+                  type="checkbox"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  disabled
+                />
+                <label
+                  for="icons"
+                  class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Include icons? (Chrome 84 and later)</label
+                >
+              </div>
+            </li>
+          </ol>
 
-        <div class="py-2">
-          <button
-            type="button"
-            id="btnClicksuest"
-            class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-2 mb-2"
-            onclick="getContacts()"
-            disabled
-          >
-            <svg
-              class="w-5 h-5 mr-2 -ml-1"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fab"
-              data-icon="apple"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 384 512"
+          <div class="py-2">
+            <button
+              type="button"
+              id="btnClicksuest"
+              class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-2 mb-2"
+              onclick="getContacts()"
+              disabled
             >
-              <g
-                transform="translate(0.000000,460.000000) scale(0.100000,-0.100000)"
-                fill="#000000"
-                stroke="none"
+              <svg
+                class="w-5 h-5 mr-2 -ml-1"
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fab"
+                data-icon="apple"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512"
               >
-                <path
-                  d="M1987 4470 c-32 -39 -60 -77 -63 -84 -3 -7 -35 -30 -72 -51 -37 -21
+                <g
+                  transform="translate(0.000000,460.000000) scale(0.100000,-0.100000)"
+                  fill="#000000"
+                  stroke="none"
+                >
+                  <path
+                    d="M1987 4470 c-32 -39 -60 -77 -63 -84 -3 -7 -35 -30 -72 -51 -37 -21
             -80 -48 -97 -60 -16 -12 -41 -25 -55 -28 -14 -4 -54 -32 -90 -63 -36 -30 -81
             -64 -102 -75 -20 -10 -38 -22 -40 -26 -1 -5 -33 -32 -70 -61 -80 -63 -195
             -211 -204 -261 -3 -20 -19 -69 -36 -110 -16 -41 -35 -108 -41 -148 l-12 -75
@@ -262,32 +263,33 @@
             -25 6 -25 15 0 19 -9 19 -34 0 -25 -19 -80 -19 -96 0 -18 22 -1 37 37 33 30
             -4 34 -2 29 16 -7 29 11 46 50 46 27 0 34 -4 34 -20z m200 -10 c0 -21 -24 -28
             -35 -10 -8 14 3 30 21 30 8 0 14 -9 14 -20z"
-                ></path>
-                <path
-                  d="M2580 230 c0 -5 6 -10 14 -10 8 0 18 5 21 10 3 6 -3 10 -14 10 -12 0
+                  ></path>
+                  <path
+                    d="M2580 230 c0 -5 6 -10 14 -10 8 0 18 5 21 10 3 6 -3 10 -14 10 -12 0
             -21 -4 -21 -10z"
-                ></path>
-                <path
-                  d="M2830 230 c0 -5 4 -10 9 -10 6 0 13 5 16 10 3 6 -1 10 -9 10 -9 0
+                  ></path>
+                  <path
+                    d="M2830 230 c0 -5 4 -10 9 -10 6 0 13 5 16 10 3 6 -1 10 -9 10 -9 0
             -16 -4 -16 -10z"
-                ></path>
-                <path
-                  d="M2880 230 c0 -5 7 -10 15 -10 8 0 15 5 15 10 0 6 -7 10 -15 10 -8 0
+                  ></path>
+                  <path
+                    d="M2880 230 c0 -5 7 -10 15 -10 8 0 15 5 15 10 0 6 -7 10 -15 10 -8 0
             -15 -4 -15 -10z"
-                ></path>
-              </g>
-            </svg>
-            Open Contacts
-          </button>
-        </div>
+                  ></path>
+                </g>
+              </svg>
+              Open Contacts
+            </button>
+          </div>
 
-        <p class="font-bold pt-4">Results:</p>
-        <div bg-text-editor>
-          <ul id="results">
-            <li>Results will be populated here.</li>
-          </ul>
+          <p class="font-bold pt-4">Results:</p>
+          <div bg-text-editor>
+            <ul id="results">
+              <li>Results will be populated here.</li>
+            </ul>
+          </div>
+          <pre id="rawResults"></pre>
         </div>
-        <pre id="rawResults"></pre>
       </div>
     </main>
 
@@ -295,6 +297,9 @@
       // navigator.contacts
 
       const btnClicks = document.getElementById("btnClicksuest");
+      const divNotSupportedRemove = document.getElementById(
+        "justPhoneDisplayBYSODIK"
+      );
       const getIdMultiple = document.getElementById("multiple");
       const getIdName = document.getElementById("name");
       const getIdEmail = document.getElementById("email");
@@ -309,8 +314,11 @@
       if (supported) {
         const divNotSupported = document.getElementById("notSupported");
         divNotSupported.classList.toggle("hidden", true);
+        divNotSupportedRemove.style.display = "block";
         btnClicks.removeAttribute("disabled");
         checkProperties();
+      } else {
+        divNotSupportedRemove.style.display = "none";
       }
 
       async function checkProperties() {
@@ -394,6 +402,7 @@
       };
 
       // [open-source] : location:github.com/tamddk/library/tree/main/getContacts
+      // [open-source-reference] : location:contact-picker.glitch.me/
     </script>
   </body>
 </html>
