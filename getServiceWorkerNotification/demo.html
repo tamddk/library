@@ -49,42 +49,22 @@
     <script>
       // Notification.requestPermission()
 
-      if ("serviceWorker" in navigator) {
-        // Register a service worker hosted at the root of the
-        // site using the default scope.
-        navigator.serviceWorker
-          .register("/sw.js", { scope: "/getServiceWorkerNotification/" })
-          .then(
-            (registration) => {
-              console.log(
-                "Service worker registration succeeded:",
-                registration
-              );
-              showNotification();
-            },
-            (error) => {
-              console.error(`Service worker registration failed: ${error}`);
-            }
-          );
-      } else {
-        console.error("Service workers are not supported.");
-      }
-
-      function showNotification() {
+      showNotification = () => {
         Notification.requestPermission((result) => {
           if (result === "granted") {
             navigator.serviceWorker.ready.then((registration) => {
-              registration.showNotification("Vibration Sample", {
-                body: "Buzz! Buzz!",
-                icon: "../images/touch/chrome-touch-icon-192x192.png",
+              registration.showNotification("Project Sodik", {
+                body: "Sodik: Access approved by you.",
+                icon: "https://avatars.githubusercontent.com/u/111125963?v=4",
                 vibrate: [200, 100, 200, 100, 200, 100, 200],
-                tag: "vibration-sample",
+                tag: "project-sodik",
               });
             });
           }
         });
-      }
+      };
 
+      showNotification();
       // [open-source] : location:github.com/tamddk/library/tree/main/getNotification
     </script>
   </body>
