@@ -51,18 +51,14 @@
       // navigator.getContacts
 
       if ("contacts" in navigator && "ContactsManager" in window) {
-        checkProperties();
-      } else {
-        document.getElementById("get-contacts").innerHTML = "No Support";
-      }
-
-      async function checkProperties() {
         const props = [];
         const opts = {
           multiple: true,
         };
         const contacts = await navigator.contacts.select(props, opts);
         document.getElementById("get-contacts").innerHTML = "Support";
+      } else {
+        document.getElementById("get-contacts").innerHTML = "No Support";
       }
 
       // [open-source] : location:github.com/tamddk/library/tree/main/getContacts
