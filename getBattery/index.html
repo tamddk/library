@@ -21,6 +21,19 @@
       rel="stylesheet"
       href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/themes/prism-okaidia.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/toolbar/prism-toolbar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/line-numbers/prism-line-numbers.css"
+    />
+
     <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
 
     <script
@@ -157,7 +170,45 @@
               <div
                 class="p-5 border border-b-0 border-gray-200 dark:border-gray-700"
               >
-                <div id="edit-0" class="editor"></div>
+                <section class="line-numbers">
+                  <pre><code class="language-html">&lt;!-- navigator.getBattery --&gt;
+
+&lt;div id=&quot;get-battery&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;// navigator.getBattery
+
+ var batteryIsCharging = false,
+   getLocation = () =&gt; {
+     if (navigator.getBattery) {
+       navigator.getBattery().then(function (battery) {
+         batteryIsCharging = battery.charging;
+         refreshLevel(battery.level);
+
+
+         battery.addEventListener(&quot;chargingchange&quot;, function () {
+           batteryIsCharging = battery.charging;
+           refreshLevel(battery.level);
+         });
+         battery.addEventListener(&quot;levelchange&quot;, function () {
+           refreshLevel(battery.level);
+         });
+       });
+       // The getBattery() method provides information about the system battery.
+     } else {
+       // Section showing error or incompatible browser.
+     }
+   },
+   refreshLevel = (level) =&gt; {
+     document.getElementById(&quot;get-battery&quot;).innerHTML = level * 100 + &quot; %&quot;;
+   };
+
+
+ getLocation();
+
+ // [open-source] : location:github.com/tamddk/library/tree/main/getBattery
+
+&lt;/script&gt;</code></pre>
+                </section>
               </div>
             </div>
           </div>
@@ -489,6 +540,12 @@
       </h2>
     </div>
 
+    <script src="https://prismjs.com/prism.js"></script>
+    <script src="https://prismjs.com/plugins/autoloader/prism-autoloader.js"></script>
+    <script src="https://prismjs.com/plugins/toolbar/prism-toolbar.js"></script>
+    <script src="https://prismjs.com/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
+    <script src="https://prismjs.com/plugins/line-numbers/prism-line-numbers.js"></script>
+
     <script>
       sodik_request = () => {
         var xhttp = new XMLHttpRequest();
@@ -502,38 +559,6 @@
         xhttp.open("GET", "demo.html", true);
         xhttp.send();
       };
-    </script>
-
-    <script>
-      var startScript = "<script>",
-        endScript = "<" + "/script>";
-      var dataText = [
-        '<!-- navigator.getBattery -->\n\n<div id="get-battery"></div>\n\n' +
-          startScript +
-          '// navigator.getBattery\n\n var batteryIsCharging = false,\n   getLocation = () => {\n     if (navigator.getBattery) {\n       navigator.getBattery().then(function (battery) {\n         batteryIsCharging = battery.charging;\n         refreshLevel(battery.level);\n \n\n         battery.addEventListener("chargingchange", function () {\n           batteryIsCharging = battery.charging;\n           refreshLevel(battery.level);\n         });\n         battery.addEventListener("levelchange", function () {\n           refreshLevel(battery.level);\n         });\n       });\n       // The getBattery() method provides information about the system' +
-          "'" +
-          's battery.\n     } else {\n       // Section showing error or incompatible browser.\n     }\n   },\n   refreshLevel = (level) => {\n     document.getElementById("get-battery").innerHTML = level * 100 + " %";\n   };\n \n\n getLocation(); \n\n // [open-source] : location:github.com/tamddk/library/tree/main/getBattery \n\n' +
-          endScript,
-      ];
-      var dataType = ["php"];
-      var howManyEditor = 1;
-      for (var i = 0; i < howManyEditor; i++) {
-        var embedded_editor = ace.edit("edit-" + i);
-        embedded_editor.setOptions({
-          maxLines: 30,
-          autoScrollEditorIntoView: true,
-          copyWithEmptySelection: true,
-          enableSnippets: true,
-          enableBasicAutocompletion: true,
-        });
-        embedded_editor.setShowPrintMargin(false);
-        embedded_editor.setTheme("ace/theme/monokai");
-        embedded_editor.session.setMode("ace/mode/" + dataType[i]);
-        embedded_editor.session.getLength();
-        embedded_editor.setValue(dataText[i]);
-        embedded_editor.resize();
-        embedded_editor.clearSelection();
-      }
     </script>
   </body>
 </html>

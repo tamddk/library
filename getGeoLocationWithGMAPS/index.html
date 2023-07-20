@@ -21,13 +21,20 @@
       rel="stylesheet"
       href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
     />
-    <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/themes/prism-okaidia.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/toolbar/prism-toolbar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/line-numbers/prism-line-numbers.css"
+    />
 
-    <script
-      src="https://ace.c9.io/build/src/ace.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
+    <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
   </head>
   <body class="px-4 py-4" call_me_sodik>
     <div id="accordion-collapse" data-accordion="collapse">
@@ -146,7 +153,46 @@
               <div
                 class="p-5 border border-b-0 border-gray-200 dark:border-gray-700"
               >
-                <div id="edit-0" class="editor"></div>
+                <section class="line-numbers">
+                  <pre><code class="language-html">&lt;!-- Google Map Api --&gt;
+
+&lt;iframe
+  id=&quot;sodik-gmap-canvas&quot;
+  width=&quot;100%&quot;
+  height=&quot;300px&quot;
+  frameborder=&quot;0&quot;
+  scrolling=&quot;no&quot;
+  marginheight=&quot;0&quot;
+  marginwidth=&quot;0&quot;
+&gt;&lt;/iframe&gt;
+
+&lt;script&gt;
+  // navigator.geolocation
+
+  var iframeGoogle = document.getElementById(&quot;sodik-gmap-canvas&quot;),
+    getLocation = () =&gt; {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getPosition);
+        // The Geolocation.getCurrentPosition() method is used to get the current position of the device.
+      } else {
+        // Section showing error or incompatible browser.
+      }
+    },
+    getPosition = (position) =&gt; {
+      iframeGoogle.setAttribute(
+        &quot;src&quot;,
+        &quot;https://maps.google.com/maps?width=100%25&amp;height=250&amp;hl=en&amp;q=&quot; +
+          position.coords.latitude +
+          &quot;,&quot; +
+          position.coords.longitude +
+          &quot;+(Instagram%20@project_sodik)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed&quot;
+      );
+    };
+  getLocation();
+
+  // [open-source] : location:github.com/tamddk/library/tree/main/getGeoLocationWithGMAPS
+&lt;/script&gt;</code></pre>
+                </section>
               </div>
             </div>
           </div>
@@ -478,6 +524,12 @@
       </h2>
     </div>
 
+    <script src="https://prismjs.com/prism.js"></script>
+    <script src="https://prismjs.com/plugins/autoloader/prism-autoloader.js"></script>
+    <script src="https://prismjs.com/plugins/toolbar/prism-toolbar.js"></script>
+    <script src="https://prismjs.com/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
+    <script src="https://prismjs.com/plugins/line-numbers/prism-line-numbers.js"></script>
+
     <script>
       sodik_request = () => {
         var xhttp = new XMLHttpRequest();
@@ -491,36 +543,6 @@
         xhttp.open("GET", "demo.html", true);
         xhttp.send();
       };
-    </script>
-
-    <script>
-      var startScript = "<script>",
-        endScript = "<" + "/script>";
-      var dataText = [
-        '<!-- Google Map Api -->\n\n<iframe id="sodik-gmap-canvas" width="100%" height="300px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>\n\n' +
-          startScript +
-          '\n\n// navigator.geolocation\n\nvar iframeGoogle = document.getElementById("sodik-gmap-canvas"),\ngetLocation = () => { \n if (navigator.geolocation){ \n\n\ navigator.geolocation.getCurrentPosition(getPosition);\n// The Geolocation.getCurrentPosition() method is used to get the current position of the device. \n\n } else { \n // Section showing error or incompatible browser. \n } \n},\ngetPosition = (position) => { \n\n\ iframeGoogle.setAttribute("src","https://maps.google.com/maps?width=100%25&height=250&hl=en&q=" + position.coords.latitude + "," + position.coords.longitude + "+(Instagram%20@project_sodik)&t=&z=14&ie=UTF8&iwloc=B&output=embed"); \n\n\}; \ngetLocation(); \n\n\// [open-source] : location:github.com/tamddk/library/tree/main/getGeoLocationWithGMAPS\n\n' +
-          endScript,
-      ];
-      var dataType = ["php"];
-      var howManyEditor = 1;
-      for (var i = 0; i < howManyEditor; i++) {
-        var embedded_editor = ace.edit("edit-" + i);
-        embedded_editor.setOptions({
-          maxLines: 30,
-          autoScrollEditorIntoView: true,
-          copyWithEmptySelection: true,
-          enableSnippets: true,
-          enableBasicAutocompletion: true,
-        });
-        embedded_editor.setShowPrintMargin(false);
-        embedded_editor.setTheme("ace/theme/monokai");
-        embedded_editor.session.setMode("ace/mode/" + dataType[i]);
-        embedded_editor.session.getLength();
-        embedded_editor.setValue(dataText[i]);
-        embedded_editor.resize();
-        embedded_editor.clearSelection();
-      }
     </script>
   </body>
 </html>

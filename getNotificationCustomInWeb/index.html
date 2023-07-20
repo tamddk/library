@@ -21,13 +21,20 @@
       rel="stylesheet"
       href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
     />
-    <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/themes/prism-okaidia.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/toolbar/prism-toolbar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/line-numbers/prism-line-numbers.css"
+    />
 
-    <script
-      src="https://ace.c9.io/build/src/ace.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
+    <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
   </head>
   <body class="px-4 py-4" call_me_sodik>
     <div id="accordion-collapse" data-accordion="collapse">
@@ -153,7 +160,59 @@
               <div
                 class="p-5 border border-b-0 border-gray-200 dark:border-gray-700"
               >
-                <div id="edit-0" class="editor"></div>
+                <section class="line-numbers">
+                  <pre><code class="language-html">&lt;script&gt;// Notification.requestPermission()
+
+_sdk_run = () =&gt; {
+   if (&quot;Notification&quot; in window) {
+     Notification.requestPermission(_sdk_permission);
+     // The Notification interface of the Notifications API is used to configure and display desktop notifications to the user.
+   }
+};
+
+_sdk_permission = (permission) =&gt; {
+   if (permission != &quot;granted&quot;) {
+     // If Access denied
+     _sdk_permissionError(); // Display Error
+     return;
+} else {
+     // Access accepted
+     _sdk_permissionSuccess(); // Display Success
+     return;
+   }
+};
+
+_sdk_permissionSuccess = () =&gt; {
+
+   const notification = new Notification(&quot;Project Sodik&quot;, { // &quot;Project&quot; Sodik Text Display Notif
+     body: &quot;Sodik: Access approved by you.&quot;, // Text Display Notif
+     icon: &quot;https://avatars.githubusercontent.com/u/111125963?v=4&quot;, // Icon Display Notif
+   }); // create a new notification
+
+   setTimeout(() =&gt; {
+     notification.close();
+   }, 120 * 1000); // close the notification after 60 seconds = 1 minute
+
+   notification.addEventListener(&quot;click&quot;, () =&gt; {
+     window.open(
+        &quot;https://tamddk.github.io/library/getNotificationInWeb/&quot;, // Link Redirect Click
+        &quot;_blank&quot; // Target Click New Tabs
+     );
+
+   }); // navigate to a URL when clicked
+
+};
+
+_sdk_permissionError = () =&gt; {
+   alert(&quot;Sodik: Access not approved by you.&quot;); // Display in Alert
+};
+
+_sdk_run();
+
+// [open-source] : location:github.com/tamddk/library/tree/main/getNotificationCustomInWeb
+
+&lt;/script&gt;</code></pre>
+                </section>
               </div>
             </div>
           </div>
@@ -485,6 +544,12 @@
       </h2>
     </div>
 
+    <script src="https://prismjs.com/prism.js"></script>
+    <script src="https://prismjs.com/plugins/autoloader/prism-autoloader.js"></script>
+    <script src="https://prismjs.com/plugins/toolbar/prism-toolbar.js"></script>
+    <script src="https://prismjs.com/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
+    <script src="https://prismjs.com/plugins/line-numbers/prism-line-numbers.js"></script>
+
     <script>
       sodik_request = () => {
         var xhttp = new XMLHttpRequest();
@@ -498,31 +563,6 @@
         xhttp.open("GET", "demo.html", true);
         xhttp.send();
       };
-    </script>
-
-    <script>
-      var dataText = [
-        '// Notification.requestPermission() \n\n _sdk_run = () => {\n    if ("Notification" in window) {\n      Notification.requestPermission(_sdk_permission);\n      // The Notification interface of the Notifications API is used to configure and display desktop notifications to the user.\n    }\n }; \n\n _sdk_permission = (permission) => {\n    if (permission != "granted") {\n      // If Access denied\n      _sdk_permissionError(); // Display Error\n      return;\n } else {\n      // Access accepted\n      _sdk_permissionSuccess(); // Display Success\n      return;\n    }\n }; \n\n _sdk_permissionSuccess = () => {\n\n    const notification = new Notification("Project Sodik", { // "Project" Sodik Text Display Notif\n      body: "Sodik: Access approved by you.", // Text Display Notif\n      icon: "https://avatars.githubusercontent.com/u/111125963?v=4", // Icon Display Notif\n    }); // create a new notification \n\n    setTimeout(() => {\n      notification.close();\n    }, 120 * 1000); // close the notification after 60 seconds = 1 minute \n\n    notification.addEventListener("click", () => {\n      window.open(\n         "https://tamddk.github.io/library/getNotificationInWeb/", // Link Redirect Click\n         "_blank" // Target Click New Tabs\n      );\n\n    }); // navigate to a URL when clicked\n\n }; \n\n _sdk_permissionError = () => {\n    alert("Sodik: Access not approved by you."); // Display in Alert\n }; \n\n _sdk_run(); \n\n // [open-source] : location:github.com/tamddk/library/tree/main/getNotificationCustomInWeb',
-      ];
-      var dataType = ["javascript"];
-      var howManyEditor = 1;
-      for (var i = 0; i < howManyEditor; i++) {
-        var embedded_editor = ace.edit("edit-" + i);
-        embedded_editor.setOptions({
-          maxLines: 30,
-          autoScrollEditorIntoView: true,
-          copyWithEmptySelection: true,
-          enableSnippets: true,
-          enableBasicAutocompletion: true,
-        });
-        embedded_editor.setShowPrintMargin(false);
-        embedded_editor.setTheme("ace/theme/monokai");
-        embedded_editor.session.setMode("ace/mode/" + dataType[i]);
-        embedded_editor.session.getLength();
-        embedded_editor.setValue(dataText[i]);
-        embedded_editor.resize();
-        embedded_editor.clearSelection();
-      }
     </script>
   </body>
 </html>

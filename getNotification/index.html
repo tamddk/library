@@ -21,13 +21,20 @@
       rel="stylesheet"
       href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
     />
-    <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/themes/prism-okaidia.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/toolbar/prism-toolbar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/line-numbers/prism-line-numbers.css"
+    />
 
-    <script
-      src="https://ace.c9.io/build/src/ace.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
+    <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
   </head>
   <body class="px-4 py-4" call_me_sodik>
     <div id="accordion-collapse" data-accordion="collapse">
@@ -157,7 +164,16 @@
               <div
                 class="p-5 border border-b-0 border-gray-200 dark:border-gray-700"
               >
-                <div id="edit-0" class="editor"></div>
+                <section class="line-numbers">
+                  <pre><code class="language-html">&lt;script&gt;// Notification.requestPermission()
+
+if (&quot;Notification&quot; in window) {
+  Notification.requestPermission();
+}
+
+// [open-source] : location:github.com/tamddk/library/tree/main/getNotification
+&lt;/script&gt;</code></pre>
+                </section>
               </div>
             </div>
           </div>
@@ -489,6 +505,12 @@
       </h2>
     </div>
 
+    <script src="https://prismjs.com/prism.js"></script>
+    <script src="https://prismjs.com/plugins/autoloader/prism-autoloader.js"></script>
+    <script src="https://prismjs.com/plugins/toolbar/prism-toolbar.js"></script>
+    <script src="https://prismjs.com/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
+    <script src="https://prismjs.com/plugins/line-numbers/prism-line-numbers.js"></script>
+
     <script>
       sodik_request = () => {
         var xhttp = new XMLHttpRequest();
@@ -502,33 +524,6 @@
         xhttp.open("GET", "demo.html", true);
         xhttp.send();
       };
-    </script>
-
-    <script>
-      var startScript = "<script>",
-        endScript = "<" + "/script>";
-      var dataText = [
-        '// Notification.requestPermission()\n\n if ("Notification" in window) {\n\n Notification.requestPermission();\n\n }\n\n // [open-source] : location:github.com/tamddk/library/tree/main/getNotification',
-      ];
-      var dataType = ["javascript"];
-      var howManyEditor = 1;
-      for (var i = 0; i < howManyEditor; i++) {
-        var embedded_editor = ace.edit("edit-" + i);
-        embedded_editor.setOptions({
-          maxLines: 30,
-          autoScrollEditorIntoView: true,
-          copyWithEmptySelection: true,
-          enableSnippets: true,
-          enableBasicAutocompletion: true,
-        });
-        embedded_editor.setShowPrintMargin(false);
-        embedded_editor.setTheme("ace/theme/monokai");
-        embedded_editor.session.setMode("ace/mode/" + dataType[i]);
-        embedded_editor.session.getLength();
-        embedded_editor.setValue(dataText[i]);
-        embedded_editor.resize();
-        embedded_editor.clearSelection();
-      }
     </script>
   </body>
 </html>

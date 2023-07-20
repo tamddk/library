@@ -21,13 +21,20 @@
       rel="stylesheet"
       href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
     />
-    <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/themes/prism-okaidia.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/toolbar/prism-toolbar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/line-numbers/prism-line-numbers.css"
+    />
 
-    <script
-      src="https://ace.c9.io/build/src/ace.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
+    <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
   </head>
   <body class="px-4 py-4" call_me_sodik>
     <div id="accordion-collapse" data-accordion="collapse">
@@ -152,7 +159,174 @@
               <div
                 class="p-5 border border-b-0 border-gray-200 dark:border-gray-700"
               >
-                <div id="edit-0" class="editor"></div>
+                <section class="line-numbers">
+                  <pre><code class="language-html">&lt;!-- Get Contacts Api --&gt;
+
+&lt;p id=&quot;notSupported&quot;&gt;
+  &lt;b&gt;Sorry!&lt;/b&gt; This browser not support the Contact Picker API, which
+  required for this demo. Try enabling the
+  &lt;code&gt;#enable-experimental-web-platform-features&lt;/code&gt; in chrome://flags
+  and try again.
+&lt;/p&gt;
+
+&lt;p&gt;
+  &lt;b&gt;Note:&lt;/b&gt; This demo requires Chrome 80 or later running on Android M or
+  later to work properly.
+&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;multiple&quot; /&gt;
+    &lt;label for=&quot;multiple&quot;&gt;Multiple results?&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;name&quot; disabled /&gt;
+    &lt;label for=&quot;name&quot;&gt;Include name?&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;email&quot; disabled /&gt;
+    &lt;label for=&quot;email&quot;&gt;Include email addresses?&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;tel&quot; disabled /&gt;
+    &lt;label for=&quot;tel&quot;&gt;Include telephone numbers?&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;address&quot; disabled /&gt;
+    &lt;label for=&quot;address&quot;&gt;Include addresses? (Chrome 84 and later)&lt;/label&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;icon&quot; disabled /&gt;
+    &lt;label for=&quot;icons&quot;&gt;Include icons? (Chrome 84 and later)&lt;/label&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+  This demo &lt;b&gt;does not&lt;/b&gt;share or upload your contacts. It simply shows
+  them on screen, and no contact data is transferred off this device.
+&lt;/p&gt;
+
+&lt;p&gt;
+  &lt;button id=&quot;butRequest&quot; type=&quot;button&quot; disabled&gt;
+    Open contact picker
+  &lt;/button&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &lt;b&gt;Results&lt;/b&gt;
+&lt;/p&gt;
+
+&lt;ul id=&quot;results&quot;&gt;
+  &lt;li&gt;Results will be populated here.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre id=&quot;rawResults&quot;&gt;&lt;/pre&gt;
+
+&lt;script&gt;
+  // navigator.contacts
+
+  const butReq = document.getElementById(&quot;butRequest&quot;);
+  butReq.addEventListener(&quot;click&quot;, getContacts);
+
+  const cbMultiple = document.getElementById(&quot;multiple&quot;);
+  const cbName = document.getElementById(&quot;name&quot;);
+  const cbEmail = document.getElementById(&quot;email&quot;);
+  const cbTel = document.getElementById(&quot;tel&quot;);
+  const cbAddress = document.getElementById(&quot;address&quot;);
+  const cbIcon = document.getElementById(&quot;icon&quot;);
+  const ulResults = document.getElementById(&quot;results&quot;);
+  const preResults = document.getElementById(&quot;rawResults&quot;);
+  const supported = (&quot;contacts&quot; in navigator &amp;&amp; &quot;ContactsManager&quot; in window);
+
+  if (supported) {
+    const divNotSupported = document.getElementById(&quot;notSupported&quot;);
+    divNotSupported.classList.toggle(&quot;hidden&quot;, true);
+    butReq.removeAttribute(&quot;disabled&quot;);
+    checkProperties();
+  }
+
+  async function checkProperties() {
+    const supportedProperties = await navigator.contacts.getProperties();
+    if (supportedProperties.includes(&quot;name&quot;)) {
+      enableProp(cbName);
+    }
+    if (supportedProperties.includes(&quot;email&quot;)) {
+      enableProp(cbEmail);
+    }
+    if (supportedProperties.includes(&quot;tel&quot;)) {
+      enableProp(cbTel);
+    }
+    if (supportedProperties.includes(&quot;address&quot;)) {
+      enableProp(cbAddress);
+    }
+    if (supportedProperties.includes(&quot;icon&quot;)) {
+      enableProp(cbIcon);
+    }
+  }
+
+  async function getContacts() {
+    const props = [];
+    if (cbName.checked) props.push(&quot;name&quot;);
+    if (cbEmail.checked) props.push(&quot;email&quot;);
+    if (cbTel.checked) props.push(&quot;tel&quot;);
+    if (cbAddress.checked) props.push(&quot;address&quot;);
+    if (cbIcon.checked) props.push(&quot;icon&quot;);
+
+    const opts = {multiple: cbMultiple.checked};
+
+    try {
+      const contacts = await navigator.contacts.select(props, opts);
+      handleResults(contacts);
+    } catch (ex) {
+      ulResults.classList.toggle(&quot;error&quot;, true);
+      ulResults.classList.toggle(&quot;success&quot;, false);
+      ulResults.innerText = ex.toString();
+    }
+
+  }
+
+  function handleResults(contacts) {
+    ulResults.classList.toggle(&quot;success&quot;, true);
+    ulResults.classList.toggle(&quot;error&quot;, false);
+    ulResults.innerHTML = &quot;&quot;;
+    renderResults(contacts);
+  }
+
+  function enableProp(cbox) {
+    cbox.removeAttribute(&quot;disabled&quot;);
+    cbox.setAttribute(&quot;checked&quot;, &quot;checked&quot;);
+  }
+
+  function renderResults(contacts) {
+    contacts.forEach((contact) =&gt; {
+      const lines = [];
+      if (contact.name) lines.push(&quot;&lt;b&gt;Name:&lt;/b&gt; ${contact.name.join(&quot;, &quot;)}&quot;);
+      if (contact.email) lines.push(&quot;&lt;b&gt;E-mail:&lt;/b&gt; ${contact.email.join(&quot;, &quot;)}&quot;);
+      if (contact.tel) lines.push(&quot;&lt;b&gt;Telephone:&lt;/b&gt; ${contact.tel.join(&quot;, &quot;)}&quot;);
+      if (contact.address) {
+        contact.address.forEach((address) =&gt; {
+          lines.push(&quot;&lt;b&gt;Address:&lt;/b&gt; ${JSON.stringify(address)}&quot;);
+        });
+      }
+      if (contact.icon) {
+        contact.icon.forEach((icon) =&gt; {
+          const imgURL = URL.createObjectURL(icon);
+          lines.push(&quot;&lt;b&gt;Icon:&lt;/b&gt; &lt;img src=&quot;${imgURL}&quot;&gt;&quot;);
+        });
+      }
+      lines.push(&quot;&lt;b&gt;Raw:&lt;/b&gt; &lt;code&gt;${JSON.stringify(contact)}&lt;/code&gt;&quot;);
+      const li = document.createElement(&quot;li&quot;);
+      li.innerHTML = lines.join(&quot;&lt;br&gt;&quot;);
+      ulResults.appendChild(li);
+    });
+    const strContacts = JSON.stringify(contacts, null, 2);
+    console.log(strContacts);
+  }
+
+  // [open-source] : location:github.com/tamddk/library/tree/main/getContactsWithResult
+  // [open-source-reference] : location:contact-picker.glitch.me/
+&lt;/script&gt;</code></pre>
+                </section>
               </div>
             </div>
           </div>
@@ -484,49 +658,16 @@
       </h2>
     </div>
 
+    <script src="https://prismjs.com/prism.js"></script>
+    <script src="https://prismjs.com/plugins/autoloader/prism-autoloader.js"></script>
+    <script src="https://prismjs.com/plugins/toolbar/prism-toolbar.js"></script>
+    <script src="https://prismjs.com/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
+    <script src="https://prismjs.com/plugins/line-numbers/prism-line-numbers.js"></script>
+
     <script>
       sodik_request = () => {
         window.location.href = "demo.html";
       };
-    </script>
-
-    <script>
-      var startScript = "<script>",
-        endScript = "<" + "/script>";
-      var dataText = [
-        '<!-- Get Contacts Api -->\n\n <p id="notSupported"> <b>Sorry!</b> This browser not support the Contact Picker API, which required for this demo. Try enabling the <code>#enable-experimental-web-platform-features</code> in chrome://flags and try again. </p>\n\n <p> <b>Note:</b> This demo requires Chrome 80 or later running on Android M or later to work properly. </p>\n\n <ol>\n <li>\n <input type="checkbox" id="multiple" />\n <label for="multiple">Multiple results?</label>\n </li>\n <li>\n <input type="checkbox" id="name" disabled />\n <label for="name">Include name?</label>\n </li>\n <li>\n <input type="checkbox" id="email" disabled />\n <label for="email">Include email addresses?</label>\n </li>\n <li>\n <input type="checkbox" id="tel" disabled />\n <label for="tel">Include telephone numbers?</label>\n </li>\n <li>\n <input type="checkbox" id="address" disabled />\n <label for="address">Include addresses? (Chrome 84 and later)</label>\n </li>\n <li>\n <input type="checkbox" id="icon" disabled />\n <label for="icons">Include icons? (Chrome 84 and later)</label>\n </li>\n </ol>\n\n <p>This demo <b>does not</b>share or upload your contacts. It simply shows them on screen, and no contact data is transferred off this device.</p>\n\n <p>\n <button id="butRequest" type="button" disabled>Open contact picker</button>\n </p>\n\n <p>\n <b>Results</b>\n </p>\n\n <ul id="results">\n <li>Results will be populated here.</li>\n </ul>\n\n <pre id="rawResults"></pre>\n\n ' +
-          startScript +
-          '\n // navigator.contacts\n\n const butReq = document.getElementById("butRequest");\n butReq.addEventListener("click", getContacts);\n\n const cbMultiple = document.getElementById("multiple");\n const cbName = document.getElementById("name");\n const cbEmail = document.getElementById("email");\n const cbTel = document.getElementById("tel");\n const cbAddress = document.getElementById("address");\n const cbIcon = document.getElementById("icon");\n const ulResults = document.getElementById("results");\n const preResults = document.getElementById("rawResults");\n const supported = ("contacts" in navigator && "ContactsManager" in window);\n\n if (supported) {\n const divNotSupported = document.getElementById("notSupported");\n divNotSupported.classList.toggle("hidden", true);\n butReq.removeAttribute("disabled");\n checkProperties();\n }\n\n async function checkProperties() {\n const supportedProperties = await navigator.contacts.getProperties();\n if (supportedProperties.includes("name")) {\n enableProp(cbName);\n }\n if (supportedProperties.includes("email")) {\n enableProp(cbEmail);\n }\n if (supportedProperties.includes("tel")) {\n enableProp(cbTel);\n }\n if (supportedProperties.includes("address")) {\n enableProp(cbAddress);\n }\n if (supportedProperties.includes("icon")) {\n enableProp(cbIcon);\n }\n }\n\n async function getContacts() {\n const props = [];\n if (cbName.checked) props.push("name");\n if (cbEmail.checked) props.push("email");\n if (cbTel.checked) props.push("tel");\n if (cbAddress.checked) props.push("address");\n if (cbIcon.checked) props.push("icon");\n\n const opts = {multiple: cbMultiple.checked};\n\n try {\n const contacts = await navigator.contacts.select(props, opts);\n handleResults(contacts);\n } catch (ex) {\n ulResults.classList.toggle("error", true);\n ulResults.classList.toggle("success", false);\n ulResults.innerText = ex.toString();\n }\n\n }\n\n function handleResults(contacts) {\n ulResults.classList.toggle("success", true);\n ulResults.classList.toggle("error", false);\n ulResults.innerHTML = ";\n renderResults(contacts);\n }\n\n function enableProp(cbox) {\n cbox.removeAttribute("disabled");\n cbox.setAttribute("checked", "checked");\n }\n\n function renderResults(contacts) {\n contacts.forEach((contact) => {\n const lines = [];\n if (contact.name) lines.push("<b>Name:</b> ${contact.name.join(", ")}");\n if (contact.email) lines.push("<b>E-mail:</b> ${contact.email.join(", ")}");\n if (contact.tel) lines.push("<b>Telephone:</b> ${contact.tel.join(", ")}");\n if (contact.address) {\n contact.address.forEach((address) => {\n lines.push("<b>Address:</b> ${JSON.stringify(address)}");\n });\n }\n if (contact.icon) {\n contact.icon.forEach((icon) => {\n const imgURL = URL.createObjectURL(icon);\n lines.push("<b>Icon:</b> <img src="${imgURL}">");\n });\n }\n lines.push("<b>Raw:</b> <code>${JSON.stringify(contact)}</code>");\n const li = document.createElement("li");\n li.innerHTML = lines.join("<br>");\n ulResults.appendChild(li);\n });\n const strContacts = JSON.stringify(contacts, null, 2);\n console.log(strContacts);\n }\n\n // [open-source] : location:github.com/tamddk/library/tree/main/getContactsWithResult \n // [open-source-reference] : location:contact-picker.glitch.me/ \n\n' +
-          endScript,
-      ];
-      var dataType = ["php"];
-      var howManyEditor = 1;
-      for (var i = 0; i < howManyEditor; i++) {
-        var beautify_editor = ace.require("ace/ext/beautify");
-        var embedded_editor = ace.edit("edit-" + i);
-        embedded_editor.setOptions({
-          maxLines: 30,
-          autoScrollEditorIntoView: true,
-          copyWithEmptySelection: true,
-          enableSnippets: true,
-          enableBasicAutocompletion: true,
-        });
-        embedded_editor.setShowPrintMargin(false);
-        embedded_editor.setTheme("ace/theme/monokai");
-        embedded_editor.session.setMode("ace/mode/" + dataType[i]);
-        embedded_editor.session.getLength();
-        embedded_editor.setValue(dataText[i]);
-        embedded_editor.resize();
-        embedded_editor.clearSelection();
-      }
-      embedded_editor.find("\n+", {
-        backwards: false,
-        wrap: true,
-        caseSensitive: false,
-        wholeWord: false,
-        regExp: true,
-      });
-      embedded_editor.replaceAll("");
     </script>
   </body>
 </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Project Library By Mas Sodik, Silahkan Download Langusung Gaes - tamddk/library atau Hub Mas Sodik di Instagram: @tamddk/@project_sodik"
+    />
+
+    <title>SODIK DEMO - QR Code</title>
+
+    <link
+      rel="shortcut icon"
+      href="https://avatars.githubusercontent.com/u/111125963?v=4"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
+    />
+  </head>
+  <body>
+    <!-- QR CODE -->
+    <div class="m-4">
+      <div
+        class="block max-w-sm p-6 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+        style="margin: 0 auto"
+      >
+        <div id="result-qrcode"></div>
+        <div id="result-qrcode-input" style="line-break: anywhere"></div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.js"
+      integrity="sha512-is1ls2rgwpFZyixqKFEExPHVUUL+pPkBEPw47s/6NDQ4n1m6T/ySeDW3p54jp45z2EJ0RSOgilqee1WhtelXfA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      // QR Code
+      var link_owner = "https://www.instagram.com/project_sodik/";
+      var rslt = document.getElementById("result-qrcode");
+      rslt.innerHTML = "";
+      new QRCode(rslt, {
+        text: link_owner,
+        width: 384,
+        height: 384,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+      document.getElementById("result-qrcode-input").innerHTML =
+        "<br /><hr />" + link_owner;
+
+      // [open-source] : location:github.com/tamddk/library/tree/main/getQRCode
+    </script>
+  </body>
+</html>

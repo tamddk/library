@@ -9,7 +9,7 @@
       content="Project library By Mas Sodik, Silahkan Download Langusung Gaes - tamddk/library atau Hub Mas Sodik di Instagram: @tamddk/@project_sodik"
     />
 
-    <title>Sodik - Contacts</title>
+    <title>Sodik - getQRCode</title>
 
     <link
       rel="shortcut icon"
@@ -46,7 +46,7 @@
           aria-expanded="true"
           aria-controls="accordion-collapse-body-1"
         >
-          <span>What is Navigator:contacts property?</span>
+          <span>What is QR Code property?</span>
           <svg
             data-accordion-icon
             class="w-6 h-6 rotate-180 shrink-0"
@@ -86,43 +86,23 @@
               />
             </svg>
             <p>
-              The contacts read-only property of the Navigator interface returns
-              a ContactsManager interface which allows users to select entries
-              from their contact list and share limited details of the selected
-              entries with a website or application.
+              A QR code (quick-response code) is a type of two-dimensional
+              matrix barcode,
+            </p>
+            <p>
+              QR codes contain data for a locator, an identifier, and a website
+              visitor tracking. To efficiently store data, QR codes use four
+              standardized modes of encoding (i) numeric, (ii) alphanumeric,
+              (iii) byte or binary, and (iv) kanji.
             </p>
           </blockquote>
           <span>Source :</span>
           <a
-            href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/contacts"
+            href="https://en.wikipedia.org/wiki/QR_code"
             class="text-blue-700"
             target="_blank"
             >Documentation</a
           >
-
-          <div
-            class="flex p-4 mt-4 mb-4 text-sm text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800"
-            role="alert"
-          >
-            <svg
-              aria-hidden="true"
-              class="flex-shrink-0 inline w-5 h-5 mr-3"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <span class="sr-only">Info</span>
-            <div>
-              <span class="font-medium">Warning alert!</span>, Not all devices
-              or browsers are fully supported.
-            </div>
-          </div>
 
           <p class="mt-8 mb-4 text-gray-500 dark:text-gray-400">
             The following is an example of the program code
@@ -137,7 +117,7 @@
                 aria-expanded="false"
                 aria-controls="accordion-nested-collapse-body-1"
               >
-                <span>Open source code Navigator:contacts</span>
+                <span>Open source QR Code</span>
                 <svg
                   data-accordion-icon
                   class="w-6 h-6 shrink-0"
@@ -162,16 +142,46 @@
                 class="p-5 border border-b-0 border-gray-200 dark:border-gray-700"
               >
                 <section class="line-numbers">
-                  <pre><code class="language-html">&lt;script&gt;// navigator.getContacts
+                  <pre><code class="language-html">&lt;link
+rel=&quot;stylesheet&quot;
+href=&quot;https://tamddk.github.io/library/assets/donate/donate.sodik.css&quot;
+/&gt;
 
-if (&quot;contacts&quot; in navigator &amp;&amp; &quot;ContactsManager&quot; in window) {
-   document.getElementById(&quot;get-contacts&quot;).innerHTML = &quot;Support&quot;;
-} else {
-   document.getElementById(&quot;get-contacts&quot;).innerHTML = &quot;No Support&quot;;
-}
+&lt;!-- QR CODE --&gt;
+&lt;div class=&quot;m-4&quot;&gt;
+  &lt;div
+    class=&quot;block max-w-sm p-6 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700&quot;
+    style=&quot;margin: 0 auto&quot;
+  &gt;
+    &lt;div id=&quot;result-qrcode&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;result-qrcode-input&quot; style=&quot;line-break: anywhere&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
 
-// [open-source] : location:github.com/tamddk/library/tree/main/getContacts
+&lt;script
+  src=&quot;https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.js&quot;
+  integrity=&quot;sha512-is1ls2rgwpFZyixqKFEExPHVUUL+pPkBEPw47s/6NDQ4n1m6T/ySeDW3p54jp45z2EJ0RSOgilqee1WhtelXfA==&quot;
+  crossorigin=&quot;anonymous&quot;
+  referrerpolicy=&quot;no-referrer&quot;
+&gt;&lt;/script&gt;
 
+&lt;script&gt;
+  // QR Code
+  var link_owner = &quot;https://www.instagram.com/project_sodik/&quot;;
+  var rslt = document.getElementById(&quot;result-qrcode&quot;);
+  rslt.innerHTML = &quot;&quot;;
+  new QRCode(rslt, {
+    text: link_owner,
+    width: 384,
+    height: 384,
+    colorDark: &quot;#000000&quot;,
+    colorLight: &quot;#ffffff&quot;,
+    correctLevel: QRCode.CorrectLevel.H,
+  });
+  document.getElementById(&quot;result-qrcode-input&quot;).innerHTML =
+    &quot;&lt;br /&gt;&lt;hr /&gt;&quot; + link_owner;
+
+  // [open-source] : location:github.com/tamddk/library/tree/main/getQRCode
 &lt;/script&gt;</code></pre>
                 </section>
               </div>
@@ -518,7 +528,7 @@ if (&quot;contacts&quot; in navigator &amp;&amp; &quot;ContactsManager&quot; in 
           if (this.readyState == 4 && this.status == 200) {
             document.getElementById("demo_sodik_btn").remove();
             document.getElementById("demo_sodik_result").innerHTML =
-              '<iframe src="demo.html" style="width:100%" height="225" frameborder="0"></iframe><div class="flex justify-center">Demo in <a href="https://www.instagram.com/project_sodik/" class="ml-2 mr-2" target="_blank">Project Sodik</a></div>';
+              '<iframe src="demo.html" style="width:100%" height="522" frameborder="0"></iframe><div class="flex justify-center">Demo in <a href="https://www.instagram.com/project_sodik/" class="ml-2 mr-2" target="_blank">Project Sodik</a></div>';
           }
         };
         xhttp.open("GET", "demo.html", true);

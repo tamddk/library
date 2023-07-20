@@ -21,13 +21,20 @@
       rel="stylesheet"
       href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
     />
-    <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/themes/prism-okaidia.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/toolbar/prism-toolbar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://prismjs.com/plugins/line-numbers/prism-line-numbers.css"
+    />
 
-    <script
-      src="https://ace.c9.io/build/src/ace.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
+    <script src="https://tamddk.github.io/library/assets/donate/donate.sodik.js"></script>
   </head>
   <body class="px-4 py-4" call_me_sodik>
     <div id="accordion-collapse" data-accordion="collapse">
@@ -153,7 +160,28 @@
               <div
                 class="p-5 border border-b-0 border-gray-200 dark:border-gray-700"
               >
-                <div id="edit-0" class="editor"></div>
+                <section class="line-numbers">
+                  <pre><code class="language-html">&lt;script&gt;// Navigator.getUserMedia
+
+var getUserMedia = () =&gt; {
+  if (navigator.getUserMedia) {
+    let constraints = {
+      audio: true, // for deactive change false, for active change true
+      video: true, // for deactive change false, for active change true
+    };
+
+    navigator.mediaDevices.getUserMedia(constraints);
+    // The MediaDevices.getUserMedia() method prompts the user for permission to use a media input which produces a MediaStream with tracks containing the requested types of media.
+  } else {
+    // Section showing error or incompatible browser.
+  }
+};
+
+getUserMedia();
+
+// [open-source] : location:github.com/tamddk/library/tree/main/getUserMedia
+&lt;/script&gt;</code></pre>
+                </section>
               </div>
             </div>
           </div>
@@ -310,33 +338,10 @@
       </h2>
     </div>
 
-    <script>
-      var startScript = "<script>",
-        endScript = "<" + "/script>",
-        scriptOSM =
-          '<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js">';
-      var dataText = [
-        "// Navigator.getUserMedia\n\n var getUserMedia = () => {\n  if (navigator.getUserMedia) {\n\n   let constraints = {\n    audio: true, // for deactive change false, for active change true\n    video: true, // for deactive change false, for active change true\n   };\n\n   navigator.mediaDevices.getUserMedia(constraints);\n    // The MediaDevices.getUserMedia() method prompts the user for permission to use a media input which produces a MediaStream with tracks containing the requested types of media.\n\n  } else {\n\n    // Section showing error or incompatible browser.\n\n  }\n };\n\n getUserMedia();\n\n // [open-source] : location:github.com/tamddk/library/tree/main/getUserMedia",
-      ];
-      var dataType = ["javascript"];
-      var howManyEditor = 1;
-      for (var i = 0; i < howManyEditor; i++) {
-        var embedded_editor = ace.edit("edit-" + i);
-        embedded_editor.setOptions({
-          maxLines: 30,
-          autoScrollEditorIntoView: true,
-          copyWithEmptySelection: true,
-          enableSnippets: true,
-          enableBasicAutocompletion: true,
-        });
-        embedded_editor.setShowPrintMargin(false);
-        embedded_editor.setTheme("ace/theme/monokai");
-        embedded_editor.session.setMode("ace/mode/" + dataType[i]);
-        embedded_editor.session.getLength();
-        embedded_editor.setValue(dataText[i]);
-        embedded_editor.resize();
-        embedded_editor.clearSelection();
-      }
-    </script>
+    <script src="https://prismjs.com/prism.js"></script>
+    <script src="https://prismjs.com/plugins/autoloader/prism-autoloader.js"></script>
+    <script src="https://prismjs.com/plugins/toolbar/prism-toolbar.js"></script>
+    <script src="https://prismjs.com/plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
+    <script src="https://prismjs.com/plugins/line-numbers/prism-line-numbers.js"></script>
   </body>
 </html>
