@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Project library By Mas Sodik, Silahkan Download Langusung Gaes - tamddk/library atau Hub Mas Sodik di Instagram: @tamddk/@project_sodik"
+    />
+
+    <title>Sodik DEMO - OSMAPS</title>
+
+    <link
+      rel="shortcut icon"
+      href="https://avatars.githubusercontent.com/u/111125963?v=4"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
+    />
+
+    <link
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  </head>
+  <body>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Title</th>
+          <th scope="col" class="px-6 py-3">Accurate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Latitude :
+          </th>
+          <td id="get-latitude" class="px-6 py-4"></td>
+        </tr>
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Longitude :
+          </th>
+          <td id="get-longitude" class="px-6 py-4"></td>
+        </tr>
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Accuracy :
+          </th>
+          <td id="get-accuracy" class="px-6 py-4"></td>
+        </tr>
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Source Api OS-MAPS :
+          </th>
+          <td id="get-api-maps" class="px-6 py-4"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="sodik-osmap-canvas"></div>
+
+    <script>
+      // navigator.geolocation
+
+      const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0,
+      };
+
+      var iframeOpenStreet = document.getElementById("sodik-osmap-canvas"),
+        getLocation = () => {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              getPosition,
+              getError,
+              options
+            );
+            // The Geolocation.getCurrentPosition() method is used to get the current position of the device.
+          } else {
+            document.getElementById("get-latitude").innerHTML = "NULL"; // Display in HTML
+            document.getElementById("get-longitude").innerHTML = "NULL"; // Display in HTML
+            document.getElementById("get-accuracy").innerHTML = "NULL"; // Display in HTML
+            document.getElementById("get-api-maps").innerHTML = "NULL"; // Display in HTML
+          }
+        },
+        getPosition = (position) => {
+          let latitude = position.coords.latitude; // Get position coords latitude
+          let longitude = position.coords.longitude; // Get position coords longitude
+          let accuracy = position.coords.accuracy; // Get position coords accuracy
+          let apiOSMAPS = "";
+
+          console.log("Latitude: " + latitude); // Display in Console.log
+          console.log("Longitude: " + longitude); // Display in Console.log
+          console.log("Accuracy: " + accuracy); // Display in Console.log
+          console.log("Api: " + apiOSMAPS); // Display in Console.log
+
+          document.getElementById("get-latitude").innerHTML = latitude; // Display in HTML
+          document.getElementById("get-longitude").innerHTML = longitude; // Display in HTML
+          document.getElementById("get-accuracy").innerHTML = accuracy; // Display in HTML
+          document.getElementById("get-api-maps").innerHTML = apiOSMAPS; // Display in HTML
+
+          iframeOpenStreet.style = "height:300px;";
+          var map = L.map(iframeOpenStreet);
+          // Add OSM tile layer to the Leaflet map.
+          L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+            attribution:
+              '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+            subdomains: ["a", "b", "c"],
+          }).addTo(map);
+          // Target's GPS coordinates.
+          var target = L.latLng(
+            position.coords.latitude,
+            position.coords.longitude
+          );
+          // Set map's center to target with zoom 14.
+          map.setView(target, 14);
+          // Place a marker on the same location.
+          L.marker(target).addTo(map);
+        },
+        getError = (err) => {
+          document.getElementById("get-latitude").innerHTML = "NULL"; // Display in HTML
+          document.getElementById("get-longitude").innerHTML = "NULL"; // Display in HTML
+          document.getElementById("get-accuracy").innerHTML = "NULL"; // Display in HTML
+          document.getElementById("get-api-maps").innerHTML = "NULL"; // Display in HTML
+          console.warn(`ERROR(${err.code}): ${err.message}`);
+        };
+      getLocation();
+
+      // [open-source] : location:github.com/tamddk/library/tree/main/getGeoLocationWithOSMAPS
+    </script>
+  </body>
+</html>

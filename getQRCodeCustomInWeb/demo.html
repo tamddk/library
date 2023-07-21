@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Project Library By Mas Sodik, Silahkan Download Langusung Gaes - tamddk/library atau Hub Mas Sodik di Instagram: @tamddk/@project_sodik"
+    />
+
+    <title>SODIK DEMO - QR Code</title>
+
+    <link
+      rel="shortcut icon"
+      href="https://avatars.githubusercontent.com/u/111125963?v=4"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
+    />
+  </head>
+  <body>
+    <div
+      class="block m-4 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+    >
+      <div class="m-4">
+        <label
+          for="input-qrcode"
+          class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+          >Search</label
+        >
+        <div class="relative">
+          <div
+            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+          >
+            <svg
+              class="w-4 h-4 text-gray-500 dark:text-gray-400"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M14.2354 7.14709C14.3167 6.74092 14.0533 6.3458 13.6471 6.26456C13.2409 6.18333 12.8458 6.44674 12.7646 6.85291L14.2354 7.14709ZM10.7646 16.8529C10.6833 17.2591 10.9467 17.6542 11.3529 17.7354C11.7591 17.8167 12.1542 17.5533 12.2354 17.1471L10.7646 16.8529ZM7.97342 15.4921C8.26837 15.7829 8.74323 15.7795 9.03406 15.4846C9.32488 15.1896 9.32153 14.7148 9.02658 14.4239L7.97342 15.4921ZM5.5 12L4.97342 11.4659C4.83048 11.6069 4.75 11.7993 4.75 12C4.75 12.2007 4.83048 12.3931 4.97342 12.5341L5.5 12ZM9.02658 9.57606C9.32153 9.28523 9.32488 8.81037 9.03406 8.51542C8.74323 8.22047 8.26837 8.21712 7.97342 8.50794L9.02658 9.57606ZM15.9773 14.3782C15.6802 14.6669 15.6735 15.1417 15.9622 15.4387C16.2509 15.7358 16.7257 15.7425 17.0227 15.4538L15.9773 14.3782ZM19.5 12L20.0227 12.5378C20.1667 12.3979 20.2486 12.2061 20.25 12.0053C20.2514 11.8046 20.1723 11.6116 20.0303 11.4697L19.5 12ZM17.0303 8.46967C16.7374 8.17678 16.2626 8.17678 15.9697 8.46967C15.6768 8.76256 15.6768 9.23744 15.9697 9.53033L17.0303 8.46967ZM12.7646 6.85291L10.7646 16.8529L12.2354 17.1471L14.2354 7.14709L12.7646 6.85291ZM9.02658 14.4239L6.02658 11.4659L4.97342 12.5341L7.97342 15.4921L9.02658 14.4239ZM6.02658 12.5341L9.02658 9.57606L7.97342 8.50794L4.97342 11.4659L6.02658 12.5341ZM17.0227 15.4538L20.0227 12.5378L18.9773 11.4622L15.9773 14.3782L17.0227 15.4538ZM20.0303 11.4697L17.0303 8.46967L15.9697 9.53033L18.9697 12.5303L20.0303 11.4697Z"
+                fill="#000000"
+              />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="input-qrcode"
+            class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="https://tamddk.github.io/library/"
+            required
+          />
+        </div>
+        <span class="text-sm">Create QR Code: </span>
+        <ul
+          class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400"
+        >
+          <li class="text-sm">
+            <span>e.g copy (https://tamddk.github.io/library/)</span>
+          </li>
+          <li class="text-sm">
+            <span>e.g copy (Mas Sodik)</span>
+          </li>
+          <li class="text-sm">
+            <span>e.g copy (123456)</span>
+          </li>
+          <li class="text-sm">
+            <span>e.g copy (abc123)</span>
+          </li>
+        </ul>
+      </div>
+      <hr />
+      <div class="m-4">
+        <div
+          class="block max-w-sm p-6 text-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+          style="margin: 0 auto"
+        >
+          <div id="result-qrcode"></div>
+          <div id="result-qrcode-input" style="line-break: anywhere"></div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.js"
+      integrity="sha512-is1ls2rgwpFZyixqKFEExPHVUUL+pPkBEPw47s/6NDQ4n1m6T/ySeDW3p54jp45z2EJ0RSOgilqee1WhtelXfA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      // QR Code
+      var iqrc = document.getElementById("input-qrcode");
+      iqrc.addEventListener(
+        "input",
+        (e) => {
+          if (e.target.value.indexOf(" ")) {
+            if (!e.target.value) return true;
+            const rslt = document.getElementById("result-qrcode");
+            rslt.innerHTML = "";
+            new QRCode(rslt, {
+              text: e.target.value,
+              width: 384,
+              height: 384,
+              colorDark: "#000000",
+              colorLight: "#ffffff",
+              correctLevel: QRCode.CorrectLevel.H,
+            });
+            document.getElementById("result-qrcode-input").innerHTML =
+              "<br /><hr />" +
+              e.target.value +
+              "<br /> click image to download";
+
+            const dqrc = document.querySelector("img");
+            dqrc.addEventListener("click", (e) => {
+              forceDownload();
+            });
+            console.log(e.target.value);
+            return true;
+          }
+        },
+        false
+      );
+
+      // By Jones Joseph in https://stackoverflow.com/users/4084003/jones-joseph
+      function forceDownload() {
+        var url = document.querySelector("img").getAttribute("src");
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.responseType = "blob";
+        xhr.onload = function () {
+          var urlCreator = window.URL || window.webkitURL;
+          var imageUrl = urlCreator.createObjectURL(this.response);
+          var tag = document.createElement("a");
+          tag.href = imageUrl;
+          tag.download =
+            "project_sodik_" + new Date().getTime() + "_qrcode.png";
+          document.body.appendChild(tag);
+          tag.click();
+          document.body.removeChild(tag);
+        };
+        xhr.send();
+      }
+
+      // [open-source] : location:github.com/tamddk/library/tree/main/getQRCode
+    </script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Project Library By Mas Sodik, Silahkan Download Langusung Gaes - tamddk/library atau Hub Mas Sodik di Instagram: @tamddk/@project_sodik"
+    />
+
+    <title>SODIK DEMO - BATTERY</title>
+
+    <link
+      rel="shortcut icon"
+      href="https://avatars.githubusercontent.com/u/111125963?v=4"
+      type="image/x-icon"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://tamddk.github.io/library/assets/donate/donate.sodik.css"
+    />
+  </head>
+  <body>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Title</th>
+          <th scope="col" class="px-6 py-3">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            Battery :
+          </th>
+          <td id="get-battery" class="px-6 py-4"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      // navigator.getBattery
+
+      var batteryIsCharging = false,
+        getLocation = () => {
+          if (navigator.getBattery) {
+            navigator.getBattery().then(function (battery) {
+              batteryIsCharging = battery.charging;
+              refreshLevel(battery.level);
+
+              battery.addEventListener("chargingchange", function () {
+                batteryIsCharging = battery.charging;
+                refreshLevel(battery.level);
+              });
+              battery.addEventListener("levelchange", function () {
+                refreshLevel(battery.level);
+              });
+            });
+            // The getBattery() method provides information about the system's battery.
+          } else {
+            // Section showing error or incompatible browser.
+          }
+        },
+        refreshLevel = (level) => {
+          document.getElementById("get-battery").innerHTML = level * 100 + " %";
+        };
+
+      getLocation();
+
+      // [open-source] : location:github.com/tamddk/library/tree/main/getBattery
+    </script>
+  </body>
+</html>
